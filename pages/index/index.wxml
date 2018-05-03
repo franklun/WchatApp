@@ -7,6 +7,12 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+  <view class='section'>
+      <text>请在输入框输入你的名字:</text>
+      <input name="userName" type='text' focus="{{focus}}" maxlength="10" placeholder="请输入用户名" bindinput='userNameInput'/>
+      <button bindtap='submit'>提交</button>
+      <text>{{msg}}</text>
+  </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

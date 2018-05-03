@@ -4,10 +4,13 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '你是大笨蛋！',
+    motto: 'Hello！',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    hasUserInfo: true,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    focus: false,
+    inputValue: '',
+    userN: '',
   },
   //事件处理函数
   bindViewTap: function() {
@@ -31,16 +34,7 @@ Page({
         })
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+     
     }
   },
   getUserInfo: function(e) {
@@ -50,5 +44,35 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  clickMe: function() {
+    if (this.userN == "吉雅") {
+      this.setData({ msg: "你是苏伦的媳妇" })
+    } else {
+      this.setData({ msg: this.userN + "，我不认识你" })
+    }
+  },
+  userNameInput: function (e) {
+    this.setData({
+      userN: e.detail.value
+      
+    })
+  },
+  submit: function() {
+    if (this.data.userN =="" || this.data.userN == null) {
+      return
+    }
+    if (this.data.userN == "吉雅"||this.data.userN == "吉小雅") {
+      this.setData({ msg: this.data.userN + "，你是苏伦的媳妇" })
+    } else if (this.data.userN == "小熊猫") {
+      this.setData({ msg: this.data.userN + "，你是苏伦的宝贝" })
+    } else if (this.data.userN == "苏伦") {
+      this.setData({ msg: this.data.userN + "，你是我自己" })
+    } else if (this.data.userN == "大帅逼") {
+      this.setData({ msg: this.data.userN + "，你是我自己" })
+    } else {
+      this.setData({ msg: this.data.userN + "，我不认识你" })
+    }
+
   }
 })
